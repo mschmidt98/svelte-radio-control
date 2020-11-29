@@ -7,8 +7,4 @@ const app = new App({
 	}
 });
 
-declare global {
-	interface Window { app: any; }
-}
-window.app = app;
 export default app;
