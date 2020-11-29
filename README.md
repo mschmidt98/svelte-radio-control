@@ -1,15 +1,16 @@
-*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+# Svelte, Typescript, SASS, Storybook, Webpack template
 
----
+This project template was based on the [Svelte](https://svelte.dev) webpack template. It lives at https://github.com/sveltejs/template-webpack.
 
-# svelte app
-
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
+It was modified to include
+- Typescript
+- Sass
+- Storybook
 
 To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
 
 ```bash
-npx degit sveltejs/template svelte-app
+npx degit nitro52/svelte-typescript-sass-template svelte-app
 cd svelte-app
 ```
 
@@ -25,81 +26,61 @@ cd svelte-app
 npm install
 ```
 
-...then start [Rollup](https://rollupjs.org):
+...then start webpack:
 
 ```bash
 npm run dev
 ```
 
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+Navigate to [localhost:4000](http://localhost:4000). You should see your app running. Edit a component file in `src`, save it, and the page should reload with your changes.
 
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
+### Limitations
+#### Typescript/Sass
+Typescript and Sass support for `.svelte` files are added via the `svelte-preprocessor`. 
+It requires using the `lang` or `type` attributes on the `style` and `script` elements. 
+Within the script block this should work but inside `.svelte` files support varies based on the IDE you use. It may build but your IDE still shows errors 
 
-If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
+Importing separate Typescript and Sass files should work fine. 
 
-## Building and running in production mode
+#### Aliases
+Currently to use webpack style aliases during imports they need to be defined in `webpack.config', as a custom sass scssAliases to enable in sass and in tsconfig.json to enable importing in typescript
 
-To create an optimised version of the app:
+I'm currently looking for a way to share this logic but for now you must update aliases in `webpack.common.js` as well as `packages.json`
 
-```bash
-npm run build
-```
+## Storybook
+[Storybook](https://storybook.js.org/) has been setup to allow designing components in isolation. There are many Story book [addons](https://storybook.js.org/addons/) that can be added to extend the features
 
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
-
-
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
-```
-
-## Using TypeScript
-
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
+Run storybook with 
 
 ```bash
-node scripts/setupTypeScript.js
+npm run storybook
 ```
+Navigate to [localhost:4061](http://localhost:4060). You should see your component stories.
 
-Or remove the script via:
+### Stories
+Storybook is configured to load stories from the `stories` folder that end in `.stories.js` or `.stories.ts`
 
-```bash
-rm scripts/setupTypeScript.js
+This project shows 2 button examples, one button uses scss within a svelte file, the other imports a scss file using the src attribute
+
+### Removing Storybook
+If you don't want storybook remove the following
+
+**Folders**
+- `.storybook`
+- `stories`
+
+**NPM Packages**
 ```
-
-## Deploying to the web
-
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
+    "@storybook/addon-actions": "^5.2.4",
+    "@storybook/addon-knobs": "^5.2.5",
+    "@storybook/addon-links": "^5.2.4",
+    "@storybook/addon-viewport": "^5.2.5",
+    "@storybook/addons": "^5.2.4",
+    "@storybook/preset-scss": "^1.0.2",
+    "@storybook/preset-typescript": "^1.1.0",
+    "@storybook/svelte": "^5.2.4",
+    "react-docgen-typescript-loader": "^3.3.0",
 ```
+Note - `react-docgen-typescript-loader` is a dependency of the @storybook/preset-typescript and will be removed in a future version
 
-Then, from within your project folder:
-
-```bash
-cd public
-vercel deploy --name my-project
-```
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+Lastly remove the `storybook` script from your `packages.json` `scripts` section
