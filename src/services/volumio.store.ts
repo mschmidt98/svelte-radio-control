@@ -1,5 +1,6 @@
+import axios from "axios";
 import { injectable } from "tsyringe";
-import type { Entry } from "../models";
+import type { BrowseList, Entry } from "../models";
 import { LocalStorageService } from "./local-storage.store";
 
 @injectable()
@@ -9,17 +10,13 @@ export class VolumioStore {
     }
 
     public async getFavouritesAsync(): Promise<Entry[]> {
-        return [{
-            icon: 'fa fa-microphone',
-            title: 'Radio Bob',
-            uri: '',
-            type: 'webradio'
-        }, {
-            icon: 'fa fa-microphone',
-            title: 'Radio Bob - Metal',
-            uri: '',
-            type: 'webradio'
-        }]; 
+        const base = this.storageStore.getServiceUrl();
+        const url = base + 'browse?uri=radio/favourites';
+
+        const response = await axios.get(url);
+        const tmp: BrowseList = response.data;
+
+        return tmp.navigation.lists[0].items;
     }
 }
 

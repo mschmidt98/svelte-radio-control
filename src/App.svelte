@@ -9,12 +9,19 @@
 
 <main>
 {#await favourites}
-	<p>loading...</p>
+	<p>Lade Favoriten...</p>
 {:then list}
-	{#each list as entry}
-		{entry.title}
-	{/each}
+	<h2>Favoriten: </h2>
 
+	<ul>
+		{#each list as entry}
+			<li>{entry.title}</li>
+		{/each}
+	</ul>
+{:catch exception}
+	<p>Fehler beim Abrufen von
+		'{exception.config.url}':
+		{exception.message}</p>
 {/await}
 </main>
 
