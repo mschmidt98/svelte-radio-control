@@ -1,3 +1,5 @@
+![Main CI](https://github.com/mschmidt98/svelte-radio-control/workflows/Node.js%20Main%20CI/badge.svg)
+
 *Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
 
 ---
