@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { container } from 'tsyringe';
-	import type { Entry } from './models';
+	import type { Entry } from './models/dtos';
 	import { VolumioStore } from './services/volumio.store';
 
 	const service = container.resolve(VolumioStore);

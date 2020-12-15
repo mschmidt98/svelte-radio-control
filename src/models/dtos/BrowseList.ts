@@ -1,4 +1,4 @@
-import type { Entry } from "./Entry";
+import type { Entry } from "./BrowseListEntry";
 
 export interface BrowseList {
     navigation: {
