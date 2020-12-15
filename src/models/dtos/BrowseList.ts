@@ -1,10 +1,10 @@
-import type { Entry } from "./BrowseListEntry";
+import type { BrowseListEntry } from "./BrowseListEntry";
 
 export interface BrowseList {
     navigation: {
         lists: {
             availableListViews: string[];
-            items: Entry[];
+            items: BrowseListEntry[];
         }[];
         prev: {
             uri: 'radio';
