@@ -1,7 +1,7 @@
 import axios from "axios";
 import { injectable } from "tsyringe";
-import type { BrowseList, BrowseListEntry } from "../models/dtos";
 import type { RadioFavorite } from "../models";
+import type { BrowseList, BrowseListEntry, StateDto } from "../models/dtos";
 import { LocalStorageService } from "./local-storage.store";
 
 @injectable()
@@ -28,6 +28,20 @@ export class VolumioStore {
         }
          
         return favorites;
+    }
+
+    public async getCurrentState(): Promise<CurrentState> {
+
+        const base = this.storageStore.getServiceUrl();
+        const url = base + 'getState';
+
+        const response = await axios.get(url);
+        const dto: StateDto = response.data;
+
+        const state: CurrentState = {
+            status: dto.status
+        };
+        return state;
     }
 }
 
