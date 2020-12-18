@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [12.x, 14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -24,6 +24,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: build and minify tailwind    
+      run: |
+        npx tailwindcss-cli@latest build ./src/tailwind.dev.css -o ./public/tailwind.css
+        npm i -g minify
+        minify ./public/tailwind.css > ./public/tailwind.min.css
+        rm ./public/tailwind.css
     - name: npm install and build
       run: |
         npm ci
