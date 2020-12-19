@@ -10,7 +10,7 @@
 {#await favourites}
 	<p>Lade Favoriten...</p>
 {:then list}
-	<h2>Favoriten: </h2>
+	<h2 class="text-lg leading-6 font-medium text-black">Favoriten: </h2>
 
 	<ul>
 		{#each list as entry}
