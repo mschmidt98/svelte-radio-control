@@ -56,7 +56,13 @@ export default {
 				{ src: [
 						'./node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2',
 					],
-					dest: 'public/webfonts' },
+					dest: 'public/webfonts'
+				},
+				{ src: [
+						'./src/assets/*',
+					],
+					dest: 'public/assets'
+				},
 			]
 		}),
 
