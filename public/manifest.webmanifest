@@ -1,0 +1,22 @@
+{
+    "short_name": "Radio Control",
+    "name": "Radio Control v20.0",
+    "description": "Stelle auch du deine Verbindung zum Netzradio her",
+    "icons": [
+      {
+        "src": "/assets/icons/icon-192_white.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/assets/icons/icon-512_white.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#56504F",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#4285f4"
+  }
