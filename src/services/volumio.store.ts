@@ -1,6 +1,6 @@
 import axios from "axios";
 import { injectable } from "tsyringe";
-import type { RadioFavorite } from "../models";
+import type { CurrentState, RadioFavorite } from "../models";
 import type { BrowseList, BrowseListEntry, StateDto } from "../models/dtos";
 import { LocalStorageService } from "./local-storage.store";
 
