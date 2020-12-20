@@ -6,3 +6,4 @@
 </script>
 
 <TopNav />
+<FavoriteList />

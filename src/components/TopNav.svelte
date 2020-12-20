@@ -58,12 +58,12 @@
 
     </nav>
 
-    <div>
-        <Route path="/favorites" component="{FavoriteList}"/>
-        <Route path="/search" component="{NowPlaying}"/>
-        <Route path="/settings" component="{NowPlaying}"/>
-        <Route path="/">
-            <FavoriteList/>
-        </Route>
-    </div>
+<!--    <div>-->
+<!--        <Route path="/favorites" component="{FavoriteList}"/>-->
+<!--        <Route path="/search" component="{NowPlaying}"/>-->
+<!--        <Route path="/settings" component="{NowPlaying}"/>-->
+<!--        <Route path="/">-->
+<!--            <FavoriteList/>-->
+<!--        </Route>-->
+<!--    </div>-->
 </Router>
