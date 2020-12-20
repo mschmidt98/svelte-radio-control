@@ -43,6 +43,23 @@ export class VolumioStore {
         };
         return state;
     }
+
+    public async setCurrentRadio(radio: RadioFavorite): Promise<boolean> {
+        const bodyItem = {
+            item: {
+                service: 'webradio',
+                type: 'webradio',
+                title: radio.title,
+                uri: radio.uri
+            }
+        };
+
+        const base = this.storageStore.getServiceUrl();
+        const url = base + 'replaceAndPlay';
+
+        const response = await axios.post(url, bodyItem);
+        return response.status === 200 && response.data.response === "success";
+    }
 }
 
 

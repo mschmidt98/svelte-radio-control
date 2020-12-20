@@ -6,9 +6,3 @@
 </script>
 
 <TopNav />
-
-<main class="flex flex-col">
-</main>
-
-<style>
-</style>

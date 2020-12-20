@@ -6,6 +6,7 @@
     let url = '';
 
     function isActive(url: string) {
+        // return window.location.pathname == url;
         return false;
     }
 </script>
@@ -18,7 +19,10 @@
                     <div class="flex-shrink-0">
                         <img class="h-8 w-8" src="../assets/icons/icon-192_white.png" alt="Volumio Icon">
                     </div>
-                    <div class="ml-4 flex items-baseline space-x-4">
+                    <div class="text-gray-300 text-xl mx-5">
+                        Radio Control
+                    </div>
+                    <div class="hidden ml-4 flex items-baseline space-x-4">
 
                         <Link to="/">
                             <div class:bg-gray-900="{isActive('/')}"
@@ -42,7 +46,7 @@
                         </Link>
                     </div>
                 </div>
-                <div>
+                <div class="hidden">
                     <Link to="settings">
                         <div class="text-gray-300 px-2 py-2 rounded-md text-sm text-xl">
                             <i class="fas fa-wrench"></i>
@@ -59,7 +63,7 @@
         <Route path="/search" component="{NowPlaying}"/>
         <Route path="/settings" component="{NowPlaying}"/>
         <Route path="/">
-            <NowPlaying/>
+            <FavoriteList/>
         </Route>
     </div>
 </Router>
