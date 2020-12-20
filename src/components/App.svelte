@@ -12,7 +12,8 @@ import TopNav from "./TopNav.svelte";
 
 </script>
 
-<TopNav></TopNav>
+<TopNav>
+</TopNav>
 
 <main>
 	<p>
