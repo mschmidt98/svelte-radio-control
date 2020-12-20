@@ -2,6 +2,7 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "scripts": {
+    "tw": "npx tailwindcss-cli@latest build ./src/tailwind.dev.css -o ./public/tailwind.css && minify ./public/tailwind.css > ./public/tailwind.min.css && rimraf ./public/tailwind.css",
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public --host",
@@ -29,7 +30,9 @@
     "axios": "^0.21.0",
     "minify": "^6.0.1",
     "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
     "sirv-cli": "^1.0.0",
+    "svelte-routing": "^1.4.2",
     "tsyringe": "^4.4.0"
   }
 }

@@ -7,6 +7,10 @@ import type { CurrentState } from '../models';
 	const currentStatePromise: Promise<CurrentState> = service.getCurrentState();
 </script>
 
+<div>
+
+</div>
+
 {#await currentStatePromise}
 	<p>Lade aktuellen Zustand...</p>
 {:then currentState}
