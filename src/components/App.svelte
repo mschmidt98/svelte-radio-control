@@ -10,3 +10,10 @@
 <TopNav />
 <NowPlaying />
 <FavoriteList />
+
+<p class="background-red">Ich bin ein Test</p>
+
+<style type="text/scss">
+  @import "../theme/variables";
+
+</style>
