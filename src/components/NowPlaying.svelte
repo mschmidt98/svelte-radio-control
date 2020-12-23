@@ -2,17 +2,17 @@
     import { container } from 'tsyringe';
     import type { CurrentState } from '../models';
     import { VolumioStore } from '../services/volumio.store';
-    // import { Slider } from '@smui/slider/bare';
-    // import '@smui/slider/bare.css';
-    import Button from '@smui/button';
-    import Checkbox from '@smui/checkbox';
+    import Slider from '@smui/slider';
 
     const service = container.resolve(VolumioStore);
     let currentStatePromise: Promise<CurrentState>;
-    let isChecked: boolean = true;
 
     function refreshState() {
         currentStatePromise = service.getCurrentState();
+    }
+
+    function volumeChange(e: any) {
+        console.log(e);
     }
 
     refreshState();
@@ -43,10 +43,7 @@
             {exception.message}</p>
     {/await}
 
-<!--    <Slider bind:value={volume} />-->
-    <Button on:click={() => refreshState()}>MATERIAL</Button>
-
-    <Checkbox bind:checked={isChecked}>Auto Refresh</Checkbox>
+        <Slider bind:value={volume} min={0} max={100} step={1} />
 
     <button class="text-base font-medium rounded-lg p-3 bg-rose-500 text-white" on:click={() => refreshState()}>
         Refresh
