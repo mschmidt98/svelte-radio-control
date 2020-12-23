@@ -26,7 +26,7 @@ export class VolumioStore {
                 uri: dto.uri
             });
         }
-         
+
         return favorites;
     }
 
@@ -38,9 +38,23 @@ export class VolumioStore {
         const response = await axios.get(url);
         const dto: StateDto = response.data;
 
+        console.log(dto);
         const state: CurrentState = {
-            status: dto.status
+            status: dto.status,
+            albumart: dto.albumart,
+            station: dto.artist
         };
+
+        if (dto.title) {
+            const titleArray = dto.title.split(' - ');
+            if (titleArray.length === 2) {
+                state.artist = titleArray[0];
+                state.title = titleArray[1];
+            } else {
+                state.title = dto.title;
+            }
+        }
+
         return state;
     }
 
