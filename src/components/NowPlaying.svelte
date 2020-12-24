@@ -37,7 +37,7 @@
                 <!--suppress HtmlUnknownTarget -->
                 <img class="rounded-xl" height="145" width="145" alt="Albumcover" src="{currentState.albumart}"/>
                 <div class="absolute transform-half">
-                    <Fab on:click={() => changePlayState('play')}><i
+                    <Fab on:click={() => changePlayState('toggle')}><i
                             class="fas fa-{currentState.status === 'play' ? 'pause' : 'play'}"></i></Fab>
                 </div>
             </div>
@@ -49,7 +49,6 @@
                 <p>Lautstärke: {currentState.volume}</p>
             </div>
         </div>
-
 
         <!-- Volume -->
         <div class="flex items-center text-gray-300">
@@ -67,13 +66,6 @@
             '{exception.config.url}':
             {exception.message}</p>
     {/await}
-
-    <!-- Play-Pause-Stop -->
-    <div class="flex justify-center items-center mt-3">
-        <Fab on:click={() => changePlayState('stop')} mini><i class="fas fa-stop"></i></Fab>
-        <Fab on:click={() => changePlayState('play')} color="primary"><i class="fas fa-play"></i></Fab>
-        <Fab on:click={() => changePlayState('pause')} mini><i class="fas fa-pause"></i></Fab>
-    </div>
 </div>
 
 <style type="text/scss">
