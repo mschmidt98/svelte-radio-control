@@ -42,7 +42,9 @@ export class VolumioStore {
         const state: CurrentState = {
             status: dto.status,
             albumart: dto.albumart,
-            station: dto.artist
+            station: dto.artist,
+            volume: dto.volume,
+            mute: dto.mute
         };
 
         if (dto.title) {
@@ -83,7 +85,7 @@ export class VolumioStore {
         return this.isOkResponse(response);
     }
 
-    public async setState(state: 'play' | 'pause' | 'stop'): Promise<boolean> {
+    public async setState(state: 'play' | 'pause' | 'stop' | 'toggle'): Promise<boolean> {
         const base = this.storageStore.getServiceUrl();
         const url = base + `commands/?cmd=${state}`;
 
