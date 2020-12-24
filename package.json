@@ -2,7 +2,7 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "scripts": {
-    "tw": "npx tailwindcss-cli@latest build ./src/tailwind.dev.css -o ./public/tailwind.css && minify ./public/tailwind.css > ./public/tailwind.min.css && rimraf ./public/tailwind.css",
+    "tw": "npx tailwindcss-cli@latest build src/theme/tailwind.dev.scss -o ./public/tailwind.css && minify ./public/tailwind.css > ./public/tailwind.min.css && rimraf ./public/tailwind.css",
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public --host",

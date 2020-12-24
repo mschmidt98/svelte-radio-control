@@ -26,7 +26,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: build and minify tailwind    
       run: |
-        npx tailwindcss-cli@latest build ./src/tailwind.dev.css -o ./public/tailwind.css
+        npx tailwindcss-cli@latest build ./src/tailwind.dev.scss -o ./public/tailwind.css
         npm i -g minify
         minify ./public/tailwind.css > ./public/tailwind.min.css
         rm ./public/tailwind.css
