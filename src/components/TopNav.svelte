@@ -1,13 +1,19 @@
 <script lang="ts">
-    import FavoriteList from "./FavoriteList.svelte";
-    import NowPlaying from "./NowPlaying.svelte";
+    // import { container } from 'tsyringe';
+    // import { VolumioStore } from '../services/volumio.store'
+    //
+    // import FavoriteList from "./FavoriteList.svelte";
+    // import NowPlaying from "./NowPlaying.svelte";
     import { Router, Route, Link } from 'svelte-routing';
 
-    let url = '';
-
+    // let url = '';
     function isActive(url: string) {
         // return window.location.pathname == url;
         return false;
+    }
+
+    // const service = container.resolve(VolumioStore);
+    function refresh() {
     }
 </script>
 
@@ -53,17 +59,21 @@
                         </div>
                     </Link>
                 </div>
+
+                <div class="hidden mx-2 text-gray-300 justify-self-end">
+                    <i class="fas fa-redo-alt"></i>
+                </div>
             </div>
         </div>
 
     </nav>
 
-    <div>
-        <Route path="/favorites" component="{FavoriteList}"/>
-        <Route path="/search" component="{NowPlaying}"/>
-        <Route path="/settings" component="{NowPlaying}"/>
-        <Route path="/">
-            <FavoriteList/>
-        </Route>
-    </div>
+    <!--    <div>-->
+    <!--        <Route path="/favorites" component="{FavoriteList}"/>-->
+    <!--        <Route path="/search" component="{NowPlaying}"/>-->
+    <!--        <Route path="/settings" component="{NowPlaying}"/>-->
+    <!--        <Route path="/">-->
+    <!--            <FavoriteList/>-->
+    <!--        </Route>-->
+    <!--    </div>-->
 </Router>

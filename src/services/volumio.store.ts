@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { injectable } from "tsyringe";
 import type { CurrentState, RadioFavorite } from "../models";
 import type { BrowseList, BrowseListEntry, StateDto } from "../models/dtos";
@@ -26,7 +26,7 @@ export class VolumioStore {
                 uri: dto.uri
             });
         }
-         
+
         return favorites;
     }
 
@@ -38,9 +38,23 @@ export class VolumioStore {
         const response = await axios.get(url);
         const dto: StateDto = response.data;
 
+        console.log(dto);
         const state: CurrentState = {
-            status: dto.status
+            status: dto.status,
+            albumart: dto.albumart,
+            station: dto.artist
         };
+
+        if (dto.title) {
+            const titleArray = dto.title.split(' - ');
+            if (titleArray.length === 2) {
+                state.artist = titleArray[0];
+                state.title = titleArray[1];
+            } else {
+                state.title = dto.title;
+            }
+        }
+
         return state;
     }
 
@@ -58,6 +72,27 @@ export class VolumioStore {
         const url = base + 'replaceAndPlay';
 
         const response = await axios.post(url, bodyItem);
+        return this.isOkResponse(response);
+    }
+
+    public async setVolume(volume: number): Promise<boolean> {
+        const base = this.storageStore.getServiceUrl();
+        const url = base + `commands/?cmd=volume&volume=${volume}`;
+
+        const response = await axios.get(url);
+        return this.isOkResponse(response);
+    }
+
+    public async setState(state: 'play' | 'pause' | 'stop'): Promise<boolean> {
+        const base = this.storageStore.getServiceUrl();
+        const url = base + `commands/?cmd=${state}`;
+
+        const response = await axios.get(url);
+        return this.isOkResponse(response);
+
+    }
+
+    private isOkResponse(response: AxiosResponse): boolean {
         return response.status === 200 && response.data.response === "success";
     }
 }
