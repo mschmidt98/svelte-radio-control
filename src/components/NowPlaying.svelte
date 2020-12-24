@@ -3,6 +3,7 @@
     import type { CurrentState } from '../models';
     import { VolumioStore } from '../services/volumio.store';
     import Slider from '@smui/slider';
+    import Fab from '@smui/fab';
 
     const service = container.resolve(VolumioStore);
     let currentStatePromise: Promise<CurrentState>;
@@ -11,8 +12,13 @@
         currentStatePromise = service.getCurrentState();
     }
 
-    function volumeChange(e: any) {
-        console.log(e);
+    function volumeChange() {
+        service.setVolume(volume);
+        console.log(volume);
+    }
+
+    function changePlayState(state: 'play' | 'pause' | 'stop') {
+        service.setState(state);
     }
 
     refreshState();
@@ -27,6 +33,7 @@
 
         <div class="flex">
             <div class="rounded px-2 mt-2">
+                <!--suppress HtmlUnknownTarget -->
                 <img class="rounded-xl" height="145" width="145" alt="Albumcover" src="{currentState.albumart}"/>
             </div>
             <div class="text-md text-gray-300 leading-7">
@@ -34,6 +41,7 @@
                 <p>Artist: {currentState.artist}</p>
                 <p>Sender: {currentState.station}</p>
                 <p>Status: {currentState.status}</p>
+                <p>Lautstärke: {currentState.volume}</p>
             </div>
         </div>
 
@@ -43,9 +51,21 @@
             {exception.message}</p>
     {/await}
 
-        <Slider bind:value={volume} min={0} max={100} step={1} />
+    <!-- Play-Pause-Stop -->
+    <div class="flex justify-center items-center mt-3">
+        <Fab on:click={() => changePlayState('stop')} mini><i class="fas fa-stop"></i></Fab>
+        <Fab on:click={() => changePlayState('play')} color="primary"><i class="fas fa-play"></i></Fab>
+        <Fab on:click={() => changePlayState('pause')} mini><i class="fas fa-pause"></i></Fab>
+    </div>
 
-    <button class="text-base font-medium rounded-lg p-3 bg-rose-500 text-white" on:click={() => refreshState()}>
-        Refresh
-    </button>
+    <!-- Volume -->
+    <div class="flex items-center text-gray-300">
+        <div class="ml-3 mr-4">
+            <i class="fas fa-volume-down"></i>
+        </div>
+        <Slider on:mouseup={volumeChange} bind:value={volume} min={0} max={100} step={1} determined/>
+        <div class="ml-6 mr-3">
+            <i class="fas fa-volume-up"></i>
+        </div>
+    </div>
 </div>

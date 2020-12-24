@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { injectable } from "tsyringe";
 import type { CurrentState, RadioFavorite } from "../models";
 import type { BrowseList, BrowseListEntry, StateDto } from "../models/dtos";
@@ -72,6 +72,27 @@ export class VolumioStore {
         const url = base + 'replaceAndPlay';
 
         const response = await axios.post(url, bodyItem);
+        return this.isOkResponse(response);
+    }
+
+    public async setVolume(volume: number): Promise<boolean> {
+        const base = this.storageStore.getServiceUrl();
+        const url = base + `commands/?cmd=volume&volume=${volume}`;
+
+        const response = await axios.get(url);
+        return this.isOkResponse(response);
+    }
+
+    public async setState(state: 'play' | 'pause' | 'stop'): Promise<boolean> {
+        const base = this.storageStore.getServiceUrl();
+        const url = base + `commands/?cmd=${state}`;
+
+        const response = await axios.get(url);
+        return this.isOkResponse(response);
+
+    }
+
+    private isOkResponse(response: AxiosResponse): boolean {
         return response.status === 200 && response.data.response === "success";
     }
 }
