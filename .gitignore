@@ -4,6 +4,4 @@
 /.idea/
 
 .DS_Store
-/public/tailwind*.css
-/public/webfonts
-/public/assets
+/public/
