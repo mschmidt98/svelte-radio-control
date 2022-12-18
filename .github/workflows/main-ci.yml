@@ -11,29 +11,29 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x]
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: build and minify tailwind    
-      run: |
-        npx tailwindcss-cli@latest build ./src/theme/tailwind.dev.scss -o ./public/tailwind.css
-        npm i -g minify
-        minify ./public/tailwind.css > ./public/tailwind.min.css
-        rm ./public/tailwind.css
-    - name: npm install and build
-      run: |
-        npm ci
-        npm run build --if-present
-      env: 
-        CI: true
-    - run: npm test
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js v18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: latest
+
+      - name: pnpm install, build, and test
+        run: |
+          pnpm install
+          npm run build
+          npm run test --if-present
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact
+          path: dist

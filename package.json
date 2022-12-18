@@ -1,41 +1,22 @@
 {
-  "name": "svelte-app",
-  "version": "1.0.0",
+  "name": "rockmusikverein-website",
+  "version": "0.0.3",
+  "description": "Website des Rockmusikverein Verne e.V. 2012",
   "scripts": {
-    "tw": "npx tailwindcss-cli@latest build src/theme/tailwind.dev.scss -o ./public/tailwind.css && minify ./public/tailwind.css > ./public/tailwind.min.css && rimraf ./public/tailwind.css",
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public --host",
-    "validate": "svelte-check"
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
   },
+  "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^16.0.0",
-    "@rollup/plugin-node-resolve": "^10.0.0",
-    "@rollup/plugin-typescript": "^6.0.0",
-    "@tsconfig/svelte": "^1.0.0",
-    "node-sass": "^5.0.0",
-    "rollup": "^2.3.4",
-    "rollup-plugin-copy": "^3.3.0",
-    "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-postcss": "^4.0.0",
-    "rollup-plugin-svelte": "^7.0.0",
-    "rollup-plugin-terser": "^7.0.0",
-    "svelte": "^3.0.0",
-    "svelte-check": "^1.0.0",
-    "svelte-material-ui": "^1.0.0",
-    "svelte-preprocess": "^4.6.1",
-    "tslib": "^2.0.0",
-    "typescript": "^3.9.3"
+    "sass": "^1.56.1",
+    "vite": "^3.0.9",
+    "vite-plugin-solid": "^2.3.0",
+    "vite-plugin-windicss": "^1.8.7"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.1",
-    "axios": "^0.21.0",
-    "minify": "^6.0.1",
-    "postcss": "^8.2.1",
-    "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.2",
-    "sirv-cli": "^1.0.0",
-    "svelte-routing": "^1.4.2",
-    "tsyringe": "^4.4.0"
+    "@fortawesome/fontawesome-free": "^6.2.0",
+    "@solidjs/router": "^0.4.2",
+    "solid-js": "^1.5.1"
   }
 }

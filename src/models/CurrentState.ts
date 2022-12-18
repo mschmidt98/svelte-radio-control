@@ -1,5 +1,5 @@
 export class CurrentState {
-    status: "play" | "pause" | "stop";
+    status: PlayState;
     title?: string;
     artist?: string;
     albumart: string;
@@ -7,3 +7,5 @@ export class CurrentState {
     volume?: number;
     mute?: boolean;
 }
+
+export type PlayState = 'play' | 'pause' | 'stop';
