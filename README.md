@@ -1,107 +1,43 @@
-![Main CI](https://github.com/mschmidt98/svelte-radio-control/workflows/Node.js%20Main%20CI/badge.svg)
+[![Azure Static Web Apps CI/CD](https://github.com/mschmidt98/solid-rmv/actions/workflows/deploy-static-web-app.yml/badge.svg?branch=master)](https://github.com/mschmidt98/solid-rmv/actions/workflows/deploy-static-web-app.yml)
 
-*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+## Usage
 
----
+Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
 
-# svelte app
-
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
-
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
+This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
 
 ```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
+$ npm install # or pnpm install or yarn install
 ```
 
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+## Exploring the template
 
+This template's goal is to showcase the routing features of Solid.
+It also showcase how the router and Suspense work together to parallelize data fetching tied to a route via the `.data.ts` pattern.
 
-## Get started
+You can learn more about it on the [`@solidjs/router` repository](https://github.com/solidjs/@solidjs/router)
 
-Install the dependencies...
+### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
 
-```bash
-cd svelte-app
-npm install
-```
+## Available Scripts
 
-...then start [Rollup](https://rollupjs.org):
+In the project directory, you can run:
 
-```bash
-npm run dev
-```
+### `npm dev` or `npm start`
 
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
+The page will reload if you make edits.<br>
 
-If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
+### `npm run build`
 
-## Building and running in production mode
+Builds the app for production to the `dist` folder.<br>
+It correctly bundles Solid in production mode and optimizes the build for the best performance.
 
-To create an optimised version of the app:
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-```bash
-npm run build
-```
+## Deployment
 
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
-
-
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
-```
-
-## Using TypeScript
-
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
-
-```bash
-node scripts/setupTypeScript.js
-```
-
-Or remove the script via:
-
-```bash
-rm scripts/setupTypeScript.js
-```
-
-## Deploying to the web
-
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-vercel deploy --name my-project
-```
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
