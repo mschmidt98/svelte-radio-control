@@ -35,18 +35,5 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: rmv
+          name: artifact
           path: dist
-
-  deploy:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'Production'
-    name: Deploy demo environment
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v3
-        with:
-          name: build-artifact
